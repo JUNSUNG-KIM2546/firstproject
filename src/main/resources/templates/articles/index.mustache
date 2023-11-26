@@ -6,17 +6,18 @@
         <th scope="co1"> No. </th>
         <th scope="co1"> Title </th>
         <th scope="co1"> Content </th>
-        <th scope="co1"> <a href="/articles/new"><button>추가</button></a> </th>
+        <th scope="co1"> <a href="/articles/new"><button class="btn btn-success">ADD</button></a> </th>
     </tr>
     </thead>
+
     <tbody>
-    {{#articleList}}    <!--모델에 담은 객체를 이런식으로 범위를 지정해야 한다.-->
-    <tr>
-        <th scope="row"> {{id}} </th>
-        <td colspan="2"> {{title}} </td>
-        <td> {{content}} </td>
-    </tr>
-    {{/articleList}}
+        {{#articleList}}    <!--모델에 담은 객체를 이런식으로 범위를 지정해야 한다.-->
+        <tr>
+            <th scope="row"> {{id}} </th>
+            <td colspan="2"><a href="/articles/{{id}}"> {{title}} </a></td>
+            <td><a href="/articles/{{id}}"> {{content}} </a></td>
+        </tr>
+        {{/articleList}}
     </tbody>
 </table>
 

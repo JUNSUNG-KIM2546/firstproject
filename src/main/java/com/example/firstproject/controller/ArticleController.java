@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 @Slf4j  // 로깅 기능을 위한 어노테이션 추가
 @Controller
@@ -43,7 +41,7 @@ public class ArticleController {
         log.info(saved.toString());
         //System.out.println(saved.toString());
 
-        return "redirect:/articles/";
+        return "redirect:/articles/" + saved.getId();   // 추가된 번호의 상세페이지로 리다이렉트
     }
 
     @GetMapping("/{id}")
@@ -69,5 +67,40 @@ public class ArticleController {
 
         // 3. 뷰 페이지 설정하기
         return "articles/index";
+    }
+
+    @GetMapping("/{id}/edit")
+    String edit(@PathVariable Long id, Model model){
+        // 1. 데이터 가져오기
+        Article articleEntity = articleRepository.findById(id).orElse(null);
+
+        // 2. 모델에 데이터 등록
+        model.addAttribute("articleEdit", articleEntity);
+
+        // 3. 뷰 페이지 설정하기
+        return "articles/edit";
+    }
+    @PostMapping("/update")
+    String update(ArticleDto adto, Model model){
+        log.info(adto.toString());
+        
+        // 1. DTO를 엔티티로 변환하기
+        Article articleEntity = adto.toEntity(); // DTO를 엔티티로 변환
+        log.info(articleEntity.toString()); // 변환 됐는지 로그 확인
+        
+        // 2. 엔티티를 DB에 저장
+        // 2-1. DB에서 기존 데이터 가져오기
+        Article target = articleRepository.findById(articleEntity.getId()).orElse(null);
+        // 2-1. 기존 데이터 값을 갱신
+        if(target != null){ // 갱신 할 대상 존재 여부 검증
+            articleRepository.save(articleEntity);  // 엔티티를 DB에 저장(갱신)
+        }
+        else{
+            return "redirect:/articles";
+        }
+
+        
+        // 3. 수정 결과 페이지로 리다이렉트하기
+        return "redirect:/articles/" + articleEntity.getId();
     }
 }

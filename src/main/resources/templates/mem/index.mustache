@@ -4,17 +4,17 @@
     <thead>
     <tr>
         <th scope="co1"> No. </th>
-        <th scope="co1"> Title </th>
-        <th scope="co1"> Content </th>
-        <th scope="co1"> <a href="/mem/signup"><button>추가</button></a> </th>
+        <th scope="co1"> E-mail </th>
+        <th scope="co1"> Pass </th>
+        <th scope="co1"> <a href="/mem/signup"><button class="btn btn-success">추가</button></a> </th>
     </tr>
     </thead>
     <tbody>
     {{#memList}}    <!--모델에 담은 객체를 이런식으로 범위를 지정해야 한다.-->
     <tr>
         <th scope="row"> {{id}} </th>
-        <td colspan="2"> {{email}} </td>
-        <td> {{pass}} </td>
+        <td colspan="2"><a href="/mem/{{id}}"> {{email}} </a></td>
+        <td><a href="/mem/{{id}}"> {{pass}} </a></td>
     </tr>
     {{/memList}}
     </tbody>

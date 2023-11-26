@@ -1,16 +1,17 @@
 {{>layouts/header}}
 
 <form method="post" class="container" >
+    <input type="hidden" name="id" value="{{memE.id}}">
     <div class="mb-3">
         <label class="form-lavel"> 이메일 </label>
-        <input type="text" class="form-control" name="email">
+        <input type="text" class="form-control" name="email" value="{{memE.email}}">
     </div>
     <div class="mb-3">
         <label class="form-label"> 비밀번호 </label>
-        <input type="password" class="form-control" name="pass">
+        <input type="password" class="form-control" name="pass" value="{{memE.pass}}">
     </div>
     <button type="submit" class="btn btn-success">추가</button>
-    <a href="./" class="btn btn-warning">뒤로</a>
+    <a href="./{{memE.id}}" class="btn btn-warning">뒤로</a>
 </form>
 
 {{>layouts/footer}}

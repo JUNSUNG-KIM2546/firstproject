@@ -38,7 +38,7 @@ public class MemController {
 
         log.info(saved.toString());
 
-        return "redirect:/mem/";
+        return "redirect:/mem/" + saved.getId();
     }
 
     @GetMapping("/{id}")
@@ -56,5 +56,30 @@ public class MemController {
         List<Mem> memList = memRepository.findAll();    // 스프링에서 서비스를 호출하는거랑 비슷한 부분 ( Repository == Service )
         model.addAttribute("memList", memList);
         return "mem/index";
+    }
+
+    @GetMapping("/edit{id}")
+    String edit(@PathVariable Long id, Model model) {
+        Mem memE = memRepository.findById(id).orElse(null);
+        model.addAttribute("memE", memE);
+        return "mem/edit";
+    }
+    @PostMapping ("/edit{id}")
+    String edit(MemDto memDto, Model model) {
+        // DTO를 엔티티로 변환
+        log.info(memDto.toString());
+        Mem mem = memDto.toEntity();    // DTO를 엔티티로 변환
+
+        // 리파지터리로 엔티티를 DB에 저장
+        log.info(mem.toString());
+        if(mem.getId() != null){    // memID가 낫널이면 수정이 가능
+            Mem saved = memRepository.save(mem);
+            log.info(saved.toString());
+
+            return "redirect:/mem/" + saved.getId();
+        }
+        else {
+            return "redirect:/mem/";
+        }
     }
 }

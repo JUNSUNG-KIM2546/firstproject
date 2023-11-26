@@ -1,6 +1,5 @@
 package com.example.firstproject.dto;
 
-import com.example.firstproject.entity.Article;
 import com.example.firstproject.entity.Mem;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
@@ -9,6 +8,7 @@ import lombok.ToString;
 @AllArgsConstructor // 생성자 어노테이션
 public class MemDto {
 
+    private Long id;
     private String email;
     private String pass;
 
@@ -18,6 +18,6 @@ public class MemDto {
     }*/
 
     public Mem toEntity() {
-        return new Mem(null, email, pass);
+        return new Mem(id, email, pass);
     }
 }

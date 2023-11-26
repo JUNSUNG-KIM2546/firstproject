@@ -6,6 +6,7 @@
             <th scope="co1"> No. </th>
             <th scope="co1"> Title </th>
             <th scope="co1"> Content </th>
+
         </tr>
     </thead>
     <tbody>
@@ -18,5 +19,7 @@
         {{/article}}
     </tbody>
 </table>
+<th> <a href="/articles/{{article.id}}/edit" class="btn btn-info">Edit</a> </th>
+<th> <a href="/articles/" class="btn btn-warning">Go to List</a> </th>
 
 {{>layouts/footer}}

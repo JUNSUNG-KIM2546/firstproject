@@ -8,10 +8,11 @@ import lombok.ToString;
 @AllArgsConstructor
 public class ArticleDto {
 
+    private Long id;
     private String title;
     private String content;
 
     public Article toEntity() {
-        return new Article(null, title, content);
+        return new Article(id, title, content);
     }
 }

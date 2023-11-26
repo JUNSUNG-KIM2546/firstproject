@@ -4,8 +4,8 @@
     <thead>
         <tr>
             <th scope="co1"> No. </th>
-            <th scope="co1"> Title </th>
-            <th scope="co1"> Content </th>
+            <th scope="co1"> E-mail </th>
+            <th scope="co1"> Pass </th>
         </tr>
     </thead>
     <tbody>
@@ -18,5 +18,7 @@
         {{/memshow}}
     </tbody>
 </table>
+<a href="/mem/edit{{memshow.id}}"><button class="btn btn-success">수정</button></a>
+<a href="/mem/"><button class="btn btn-success">목록</button></a>
 
 {{>layouts/footer}}

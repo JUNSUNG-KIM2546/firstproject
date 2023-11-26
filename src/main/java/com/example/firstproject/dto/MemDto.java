@@ -2,16 +2,20 @@ package com.example.firstproject.dto;
 
 import com.example.firstproject.entity.Article;
 import com.example.firstproject.entity.Mem;
+import lombok.AllArgsConstructor;
+import lombok.ToString;
 
+@ToString
+@AllArgsConstructor // 생성자 어노테이션
 public class MemDto {
 
     private String email;
     private String pass;
 
-    public MemDto(String email, String pass) {
+   /* public MemDto(String email, String pass) {
         this.email = email;
         this.pass = pass;
-    }
+    }*/
 
     public Mem toEntity() {
         return new Mem(null, email, pass);

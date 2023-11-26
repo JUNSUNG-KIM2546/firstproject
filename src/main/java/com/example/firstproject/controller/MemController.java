@@ -1,18 +1,20 @@
 package com.example.firstproject.controller;
 
-import com.example.firstproject.dto.ArticleDto;
 import com.example.firstproject.dto.MemDto;
-import com.example.firstproject.entity.Article;
 import com.example.firstproject.entity.Mem;
-import com.example.firstproject.repository.ArticleRepository;
 import com.example.firstproject.repository.MemRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
+@Slf4j
 @Controller
 @RequestMapping("mem")
 public class MemController {
@@ -27,11 +29,32 @@ public class MemController {
     @PostMapping("/signup")
     String signup(MemDto mdto){
         // DTO를 엔티티로 변환
+        log.info(mdto.toString());
         Mem mem = mdto.toEntity();
 
         // 리파지터리로 엔티티를 DB에 저장
+        log.info(mem.toString());
         Mem saved = memRepository.save(mem);
 
-        return "redirect:/mem/signup";
+        log.info(saved.toString());
+
+        return "redirect:/mem/";
+    }
+
+    @GetMapping("/{id}")
+    String show(@PathVariable Long id, Model model){
+
+    Mem memEntity = memRepository.findById(id).orElse(null);    // 스프링에서 서비스를 호출하는거랑 비슷한 부분 ( Repository == Service )
+
+    model.addAttribute("memshow", memEntity);
+
+        return "mem/show";
+    }
+
+    @GetMapping("/")
+    String index(Model model) {
+        List<Mem> memList = memRepository.findAll();    // 스프링에서 서비스를 호출하는거랑 비슷한 부분 ( Repository == Service )
+        model.addAttribute("memList", memList);
+        return "mem/index";
     }
 }

@@ -1,9 +1,6 @@
 package com.example.firstproject.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @ToString
@@ -15,7 +12,7 @@ import lombok.*;
 public class Mem {
 
     @Id //기본키
-    @GeneratedValue // 오토인크리먼트
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 오토인크리먼트
     private  Long id;
 
     @Column //컴럼

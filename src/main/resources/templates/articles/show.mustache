@@ -19,7 +19,8 @@
         {{/article}}
     </tbody>
 </table>
-<th> <a href="/articles/{{article.id}}/edit" class="btn btn-info">Edit</a> </th>
-<th> <a href="/articles/" class="btn btn-warning">Go to List</a> </th>
+<a href="/articles/{{article.id}}/edit" class="btn btn-info">Edit</a>
+<a href="/articles/{{article.id}}/delete" class="btn btn-danger">Delete</a>
+<a href="/articles/" class="btn btn-warning">Go to List</a>
 
 {{>layouts/footer}}

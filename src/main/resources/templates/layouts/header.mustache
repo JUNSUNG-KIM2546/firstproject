@@ -49,3 +49,10 @@
         </div>
     </nav>
 
+    {{#msg}}
+        <div class="alert alert-primary alert-dismissible">
+            {{msg}}     <!--삭제시 나오는 내용-->
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>    <!--닫기 버튼-->
+        </div>
+    {{/msg}}
+

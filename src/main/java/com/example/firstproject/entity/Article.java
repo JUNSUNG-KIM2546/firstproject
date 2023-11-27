@@ -1,9 +1,6 @@
 package com.example.firstproject.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @ToString
@@ -14,7 +11,7 @@ import lombok.*;
 @Setter // 롬복으로 셋터 추가 (추가하는)
 public class Article {
     @Id //기본키
-    @GeneratedValue // 오토인크리먼트
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 오토인크리먼트 / DB가 id 자동 생성
     private  Long id;
 
     @Column //컴럼

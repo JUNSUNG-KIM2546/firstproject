@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -81,5 +82,21 @@ public class MemController {
         else {
             return "redirect:/mem/";
         }
+    }
+
+    @GetMapping("/delete{id}")
+    String delete(MemDto memDto, Model model, @PathVariable Long id, RedirectAttributes rttr){
+        // RedirectAttributes rttr 리다이렉트 시점에 한 번만 사용하고 사라지는 휘발성 데이터
+        // 삭제할 대상 가져오기
+        Mem memE = memRepository.findById(id).orElse(null);
+
+        // 대상 엔티티 삭제하기
+        if(memE.getId() != null){    // memID가 낫널이면 수정이 가능
+            memRepository.delete(memE);
+            rttr.addFlashAttribute("msg", "멤버를 삭제했습니다.");
+        }
+
+            return "redirect:/mem/";
+
     }
 }

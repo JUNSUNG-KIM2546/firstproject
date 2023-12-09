@@ -22,9 +22,9 @@ class ArticleServiceTest {
     @Test   // 해당 메거드가 테스트 코드임을 선언
     void index() {
         // 1. 예상 데이터
-        Article a = new Article(1L, "토요일 점심은 쌀국수", "2");
+        Article a = new Article(1L, "토요일 점심은 쌀국수", "1");
         Article b = new Article(2L, "일요일 점심은 구름계란덮밥", "2");
-        Article c = new Article(3L, "월요일 점심은 학식", "6");
+        Article c = new Article(3L, "월요일 점심은 학식", "3");
         List<Article> expected = new ArrayList<Article>(Arrays.asList(a, b, c));    // a,b,c 합치기
 
         // 2. 실제 데이터
@@ -38,7 +38,7 @@ class ArticleServiceTest {
     void show_성공_존재하는_id_입력() {
         // 1. 예상 데이터
         Long id = 1L;
-        Article expected = new Article(id, "토요일 점심은 쌀국수", "2");
+        Article expected = new Article(id, "토요일 점심은 쌀국수", "1");
 
         // 2. 실제 데이터
         Article article = articleService.show(id);
@@ -129,7 +129,7 @@ class ArticleServiceTest {
     void delete_성공_존재하는_id_입력() {
         // 1. 예상 데이터
         Long id = 3L;
-        Article expected = new Article(id, "월요일 점심은 학식", "6");
+        Article expected = new Article(id, "월요일 점심은 학식", "3");
 
         // 2. 실제 데이터
         Article article = articleService.delete(id);

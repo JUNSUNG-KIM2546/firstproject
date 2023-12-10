@@ -25,4 +25,3 @@ INSERT INTO mem(email, pass) VALUES ('user3', '1234');
 INSERT INTO coffee(name, price) VALUES ('애플유자차', '3500');
 INSERT INTO coffee(name, price) VALUES ('아메리카노', '3000');
 INSERT INTO coffee(name, price) VALUES ('쑥라떼', '3000');
-

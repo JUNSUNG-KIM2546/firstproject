@@ -1,8 +1,10 @@
 package com.example.firstproject.controller;
 
 import com.example.firstproject.dto.ArticleDto;
+import com.example.firstproject.dto.CommentDto;
 import com.example.firstproject.entity.Article;
 import com.example.firstproject.repository.ArticleRepository;
+import com.example.firstproject.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,14 +16,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j  // 로깅 기능을 위한 어노테이션 추가
 @Controller
 @RequestMapping("articles")
 public class ArticleController {
+    public static void main(String[] args) {
+        System.out.println("Hello World");
+    }
 
     @Autowired
     private ArticleRepository articleRepository;  // articleRepository 객체 선언
+    
+    @Autowired
+    private CommentService commentService;  // commentService 서비스 객체 주입
     
     @GetMapping("/new")
     String articles(Model model){
@@ -50,9 +59,11 @@ public class ArticleController {
         log.info("id = " + id); // id를 잘 받았는지 확인하는 로그
         // 1. id를 조회해 데이터 가져오기
         Article articleEntity = articleRepository.findById(id).orElse(null);
+        List<CommentDto> commentDtos = commentService.comments(id);
 
         // 2. 모델에 데이터 등록
         model.addAttribute("article", articleEntity);
+        model.addAttribute("commentDtos", commentDtos); // 댓글 목록 모델에 등록
 
         // 3. 뷰 페이지 반환
         return "articles/show";

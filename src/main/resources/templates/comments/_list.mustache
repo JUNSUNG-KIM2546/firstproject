@@ -1,0 +1,15 @@
+<div id="comment-list">
+    {{#commentDtos}}
+        <div class="card m-2" id="comment-{{id}}">
+            <!--댓글 헤더 영역 설정-->
+            <div class="card-header">
+                {{nickname}}    <!--닉네임 보여주기-->
+            </div>
+
+            <!--댓글 바디 영역 설정-->
+            <div class="card-body">
+                {{body}}        <!--댓글 본문 보여주기-->
+            </div>
+        </div>
+    {{/commentDtos}}
+</div>

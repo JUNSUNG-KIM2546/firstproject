@@ -4,5 +4,24 @@
         <h1> {{userNm}} 스프링부트3 Bye </h1>
         <h2> 음~ 쪼꼴렛 다 먹었당~ </h2>
     </div>
+    <br>
+    <div>
+        <h1> Hello, <span id="target">World</span> !</h1>
+        <input type="text" id="text-input">
+        <button id="send-btn">전송</button>
+    </div>
+    <script>
+        // 자바스크립트 코드작성
+        const btn = document.querySelector("#send-btn");
+        const text = document.querySelector("#text-input");
+
+        btn.addEventListener("click", function () {
+            // input값 가져오기
+            target.innerText = text.value;
+
+            // 인풋칸 초기화
+            text.value = "";
+        })
+    </script>
 
 {{>layouts/footer}}
